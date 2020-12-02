@@ -42,7 +42,7 @@ class StringCalculatorTest {
 
     @Test
     void shouldReturnSumOfNumbersIfInputsContainsManyNumbers(){
-        assertEquals(1673, stringCalculator.add("1,2,5,15,50,100,1500, "));
+        assertEquals(673, stringCalculator.add("1,2,5,15,50,100,500, "));
     }
 
     @Test
@@ -68,4 +68,16 @@ class StringCalculatorTest {
                 stringCalculator.add("//;\n1;-2;5");
         });
     }
+
+    @Test
+    void NumbersBiggerThan1000shouldBeIgnored(){
+        assertEquals(8, stringCalculator.add("//;\n1;2;1001;5"));
+    }
+
+
+    @Test
+    void DelimitersCanBeOfAnyLength(){
+        assertEquals(6, stringCalculator.add("//[***]\n1***2***3"));
+    }
+
 }
